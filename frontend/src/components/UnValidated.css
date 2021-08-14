@@ -1,0 +1,53 @@
+.header2 {
+    text-align: center;
+    font-family: 'Courier New';
+    font-size: 75x;
+}
+
+.header1 {
+    text-align: center;
+    font-family: 'Courier New';
+}
+
+.header3 {
+    text-align: center;
+    font-family: 'Courier New';
+    font-size: 75x;
+    margin-top: 50px;
+}
+
+.input1{
+    text-align: center;
+    margin: auto;
+    display: flex;
+}
+
+.button1{
+    margin: 0;
+    position: absolute;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.button {
+
+    text-align: center;
+    margin: auto;
+    display: flex;
+    
+    text-transform: inherit !important;
+    color: gray;
+    width: 100px;
+}
+
+.moreInfo{
+    text-align: center;
+    /* background-image: url(../pictures/vaccine.jpg);
+    width: 500px;
+    height: 500px;
+    opacity: 75%; */
+
+}
