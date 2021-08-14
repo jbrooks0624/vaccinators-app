@@ -37,7 +37,7 @@ export const try_login = (email, password) => {
         //     dispatch(set_login(true));
         //     dispatch(set_loading(false));
         // }
-        const response = { user_name: "Test User", is_validated: true }
+        const response = { user_name: "Test User", is_validated: false }
         dispatch(set_user_name(response.user_name));
         dispatch(set_validation(response.is_validated));
         dispatch(set_login(true));
