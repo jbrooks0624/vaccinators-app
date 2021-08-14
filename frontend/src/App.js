@@ -1,23 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import LoginScreen from './screens/loginScreen';
+import UnvalidatedScreen from './screens/unvalidatedScreen';
+import ValidatedScreen from './screens/validatedScreen';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function App() {
+
+  const user_state = useSelector(state => state.User);
+  const { is_logged_in, user_name, is_validated, is_loading } = user_state;
+  console.log("logged in: ", is_logged_in);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {is_loading ? 
+        <div>loading</div> :
+        !is_logged_in ? 
+          <LoginScreen/> :
+          is_validated ? 
+            <ValidatedScreen/> :
+            <UnvalidatedScreen/> }
     </div>
   );
 }
