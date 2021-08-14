@@ -1,5 +1,8 @@
 import sqlite3
 from flask import Flask
+from flask import request
+app = Flask(__name__)
+app.run()
 
 
 def check_in_database(first_name, last_name, lot_number):
@@ -20,15 +23,15 @@ def check_in_database(first_name, last_name, lot_number):
 
     if len(db_list) == 1:
         assert(db_list[0][0] == first_name and db_list[0][1] == last_name and db_list[0][2] == lot_number)
-        return True
+        return "True"
     else:
-        return False
+        return "False"
 
 
-app = Flask(__name__)
-
-
-@app.route("/validateLotNumber")
-def hello_world():
-    return "<p>Hello, World!</p>"
+@app.route("/validateLotNumber", methods=['POST'])
+def validate_lot_number():
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    lot_number = request.args.get('lot_number')
+    return check_in_database(first_name, last_name, lot_number)
 
