@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import UnValidated from './components/UnValidated';
+
 import LoginScreen from './screens/loginScreen';
-import UnvalidatedScreen from './screens/unvalidatedScreen';
 import ValidatedScreen from './screens/validatedScreen';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +21,7 @@ function App() {
           <LoginScreen/> :
           is_validated ? 
             <ValidatedScreen/> :
-            <UnvalidatedScreen/> }
+            <UnValidated/> }
     </div>
   );
 }
