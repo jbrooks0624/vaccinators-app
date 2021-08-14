@@ -1,4 +1,5 @@
 import sqlite3
+from flask import Flask
 
 
 def check_in_database(first_name, last_name, lot_number):
@@ -22,4 +23,12 @@ def check_in_database(first_name, last_name, lot_number):
         return True
     else:
         return False
+
+
+app = Flask(__name__)
+
+
+@app.route("/validateLotNumber")
+def hello_world():
+    return "<p>Hello, World!</p>"
 
