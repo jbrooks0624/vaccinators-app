@@ -18,5 +18,6 @@ def verify_lot_numbers(database_json, frontend_name):
     return False
 
 
+# Returns true, test case
 print(verify_lot_numbers('tweets.json', "NASA"))
 
