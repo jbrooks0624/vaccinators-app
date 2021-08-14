@@ -1,23 +1,28 @@
 import json
 
 
-# Opens json file and check if name is in file
-def verify_lot_numbers(database_json, frontend_name):
+# Parameters: string of database name, tuple containing frontend person's first name, last name, and lot number
+# Output: returns true if person in database, false otherwise
+def verify_person_in_database(database_json, fp):
     f = open(database_json, 'r')
-    s = f.read()
+    lines = f.readlines()
     f.close()
+    for line in lines[1:]:
+        line_items = line.split(',')
+        # Getting info from each line of csv
+        first_name = line_items[0]
+        last_name = line_items[1]
+        lot_number = line_items[2][:-1]
 
-    obj = json.loads(s)
-    statuses = obj['statuses']
-
-    for tweet in statuses:
-        user = tweet['user']
-        name = user['name']
-        if frontend_name == name:
+        # If there's a match
+        if first_name == fp[0] and last_name == fp[1] and lot_number == fp[2]:
             return True
+
+    # If nothing is found
     return False
 
 
-# Returns true, test case
-print(verify_lot_numbers('tweets.json', "NASA"))
+# Test cases
+print(verify_person_in_database('test_database.csv', ('Antin', 'Melloi', 'qtvXru')))  # True
+print(verify_person_in_database('test_database.csv', ('Kevin', 'Hass', 'qtvXru')))  # False
 
