@@ -23,7 +23,6 @@ function UnValidated(props) {
     var lastName;
     var lotNum;
     
-
     return (
         <div>
             <h3 className="header1">If you are fully vaccinated, enter the following information below </h3>

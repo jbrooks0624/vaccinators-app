@@ -23,6 +23,11 @@ export const set_loading = (new_is_loading) => ({
     payload: new_is_loading
 });
 
+export const set_lot_number = (new_lot_number) => ({
+    type: 'set_lot_number',
+    payload: new_lot_number
+});
+
 
 // THUNK
 
@@ -59,9 +64,10 @@ export const try_validate = (first_name, last_name, lot_number) => {
         //     dispatch(set_login(true));
         //     dispatch(set_loading(false));
         // }
-        const response = { user_name: "Test User", is_validated: true }
+        const response = { user_name: first_name + " " + last_name, is_validated: true }
         dispatch(set_user_name(response.user_name));
         dispatch(set_validation(response.is_validated));
+        dispatch(set_lot_number(lot_number));
         dispatch(set_loading(false));
     }
 }

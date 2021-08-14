@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import QRCode from 'react-qr-code'
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
+import { Grid, Paper, Card, CardContent, Container, Box, Typography }  from '@material-ui/core';
+
+
+
 import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
 const ValidatedScreen = (props) => {
   const { is_logged_in, user_name, is_validated, is_loading, lot_number } = props.props;
@@ -18,19 +19,28 @@ const ValidatedScreen = (props) => {
     color: theme.palette.text.secondary,
     height: 'fit',
     lineHeight: '60px',
+    paddingTop: '30px',
+    marginTop: '60px',
+    verticalAlign: 'center'
   }));
   return (
-    <Grid container spacing={2} 
-        style={{display: 'flex',
-        flexdirection:'row'}} 
-    >
-        <Grid item xs={6}>
-            <Item>
-                <QRCode value={qr_string} />
-            </Item>
-             
-        </Grid>
-    </Grid>
+    <Container maxWidth="sm">
+        
+        <Item>
+            <Typography variant="h3" >
+                {user_name + "'s vaccine is validated!"}
+            </Typography>
+        </Item>
+        <Item>
+            <Typography variant="h3" >
+                {"Lot #: " + lot_number}
+            </Typography>
+        </Item>
+        <Item>
+            <QRCode value={qr_string} />
+        </Item>
+        
+    </Container>
   );
 }
 export default ValidatedScreen;

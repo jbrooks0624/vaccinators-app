@@ -6,7 +6,7 @@ import LoginScreen from './screens/loginScreen';
 import ValidatedScreen from './screens/validatedScreen';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Container } from '@material-ui/core';
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
   const { is_logged_in, user_name, is_validated, is_loading } = user_state;
   console.log("logged in: ", is_logged_in);
   return (
-    <div className="App">
+    <Container maxWidth="sm">
       {is_loading ? 
         <div>loading</div> :
         !is_logged_in ? 
@@ -22,7 +22,7 @@ function App() {
           is_validated ? 
             <ValidatedScreen props={user_state} /> :
             <UnValidated props={user_state} /> }
-    </div>
+    </Container>
   );
 }
 
