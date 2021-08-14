@@ -18,10 +18,10 @@ function App() {
       {is_loading ? 
         <div>loading</div> :
         !is_logged_in ? 
-          <LoginScreen/> :
+          <LoginScreen props={user_state} /> :
           is_validated ? 
-            <ValidatedScreen/> :
-            <UnValidated/> }
+            <ValidatedScreen props={user_state} /> :
+            <UnValidated props={user_state} /> }
     </div>
   );
 }

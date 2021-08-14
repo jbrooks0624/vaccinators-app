@@ -44,3 +44,22 @@ export const try_login = (email, password) => {
         dispatch(set_loading(false));
     }
 }
+
+export const try_validate = (user_name, lot_number) => {
+    return async (dispatch, getState ) => {
+        console.log("try login");
+        set_loading(true);
+        // const response = await serverGET("login", email, password);
+        // if (response !== "ERR") {
+        //     dispatch(set_user_name(response.user_name));
+        //     dispatch(set_validation(response.is_validated));
+        //     dispatch(set_login(true));
+        //     dispatch(set_loading(false));
+        // }
+        const response = { user_name: "Test User", is_validated: true }
+        dispatch(set_user_name(response.user_name));
+        dispatch(set_validation(response.is_validated));
+        dispatch(set_login(true));
+        dispatch(set_loading(false));
+    }
+}

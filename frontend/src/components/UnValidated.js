@@ -1,13 +1,18 @@
 import React from 'react'
 import './UnValidated.css'
+import { try_validate } from '../actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@material-ui/core'
 
-function UnValidated() {
+function UnValidated(props) {
+
+    const dispatch = useDispatch();
 
     var firstName;
     var lastName;
     var lotNum;
+    
 
     return (
         <div>
@@ -20,7 +25,7 @@ function UnValidated() {
             <input className="input1" value={lotNum} placeholder="Lot Number" />
             
             <div className="button1">
-                <Button className="button">Submit</Button>
+                <Button className="button" onClick={() => dispatch(try_validate(firstName, lastName, lotNum))}>Submit</Button>
             </div>
 
             <h3 className="header3">If you are not fully vaccinated, please check out this information below to get vaccinated today!</h3>
