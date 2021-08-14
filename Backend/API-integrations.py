@@ -3,8 +3,8 @@ import json
 
 # Parameters: string of database name, tuple containing frontend person's first name, last name, and lot number
 # Output: returns true if person in database, false otherwise
-def verify_person_in_database(database_json, fp):
-    f = open(database_json, 'r')
+def verify_person_in_database(database_csv, fp):
+    f = open(database_csv, 'r')
     lines = f.readlines()
     f.close()
     for line in lines[1:]:
@@ -25,4 +25,3 @@ def verify_person_in_database(database_json, fp):
 # Test cases
 print(verify_person_in_database('test_database.csv', ('Antin', 'Melloi', 'qtvXru')))  # True
 print(verify_person_in_database('test_database.csv', ('Kevin', 'Hass', 'qtvXru')))  # False
-
