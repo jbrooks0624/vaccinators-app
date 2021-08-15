@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react'
 import { Grid, Button, Card, CardContent, Typography, TextField }  from '@material-ui/core';
-import { try_validate } from '../actions';
+import { try_validate, set_loading } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from './Header'
@@ -19,6 +19,14 @@ const useStyles = makeStyles((theme) => ({
       width: 200,
     },
   },
+  type: {
+    fontFamily: "serif",
+    marginBottom: 12
+  },
+  subtitle: {
+    marginTop: 9,
+    fontFamily: "sans-serif",
+  }
 }));
 
 const UnValidated = (props) => {
@@ -35,6 +43,7 @@ const UnValidated = (props) => {
     const [attempted, setAttempted] = useState(false);
     
     const onClickEvent = () => {
+      
       console.log(dob);
       if (dob[2] !== '/' || dob[5] !== '/' || dob.length !== 10) {
         setError(true);
@@ -42,6 +51,7 @@ const UnValidated = (props) => {
       }
       else {
         setError(false);
+        dispatch(set_loading(true));
         dispatch(try_validate(first,last,lot,dob));
         setAttempted(true);
       }
@@ -63,14 +73,14 @@ const UnValidated = (props) => {
 
         <Card className={classes.root} >
           <CardContent>
-          <Typography variant="h4" > {
+          <Typography className={classes.type} variant="h4" > {
             attempted ? 
-            "Sorry, this information didn't match our records.Try again?" :
-            " If you are fully vaccinated, enter the following information below"
+            "Sorry, this information did not match our records.\n Try again?" :
+            "Enter your proof of vaccination below"
           }
                    
             </Typography>
-          <Typography variant="h7" >
+          <Typography className={classes.subtitle} variant="h7" >
           <t>Read more: </t>
           <a href="https://www.vaccines.gov/">Vaccine information</a>
           </Typography>

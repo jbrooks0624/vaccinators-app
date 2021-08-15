@@ -9,10 +9,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from './components/Header';
+// import img from '../public/bg.jpg'
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: 'lightGrey'
-    
+    backgroundColor: "lightGrey"
   },
 }));
 
@@ -25,7 +25,7 @@ function App() {
     <Grid className={classes.root}>
       <Header props={user_state} />
       {is_loading ? 
-        <div>loading</div> :
+        <div></div> :
         !is_logged_in ? 
           <LoginScreen props={user_state} /> :
           is_validated ? 
