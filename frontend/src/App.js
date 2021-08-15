@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import UnValidated from './components/UnValidated';
+
+import LoginScreen from './screens/loginScreen';
+import ValidatedScreen from './screens/validatedScreen';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { Container } from '@material-ui/core';
 
 function App() {
+
+  const user_state = useSelector(state => state.User);
+  const { is_logged_in, user_name, is_validated, is_loading } = user_state;
+  console.log("logged in: ", is_logged_in);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="sm">
+      {is_loading ? 
+        <div>loading</div> :
+        !is_logged_in ? 
+          <LoginScreen props={user_state} /> :
+          is_validated ? 
+            <ValidatedScreen props={user_state} /> :
+            <UnValidated props={user_state} /> }
+    </Container>
   );
 }
 
