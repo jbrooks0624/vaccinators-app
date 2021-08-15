@@ -9,7 +9,7 @@ const LoginScreen = (props) => {
     return (
         <div className="box">
             <div className="box2">
-                <h3>Login to Google to continue</h3>
+                <h3 className="text" >Login to Google to continue</h3>
                 <Login />
                 <br></br>
             </div>
