@@ -56,7 +56,7 @@ const UnValidated = (props) => {
       direction="column"
       alignItems="center"
       justify="center"
-      style={{ minHeight: '100vh' }}
+      style={{ minHeight: '89vh' }}
     >
       
       <Grid item xs={10}>
@@ -117,15 +117,13 @@ const UnValidated = (props) => {
             />
             
             </CardContent>
-        </Card>
-
-        <Card className={classes.root}>
-          <CardContent>
-          <Button className="button" onClick={() => onClickEvent() }>Submit</Button>
+            <CardContent>
+            <Button variant="contained" color="primary"
+              className="button" onClick={() => onClickEvent() }>Submit</Button>
           
-          </CardContent>
+            </CardContent>
         </Card>
-            
+ 
       </Grid>
     </Grid>
   );
