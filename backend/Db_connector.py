@@ -33,5 +33,5 @@ def validate_lot_number():
     first_name = request.args.get('first_name')
     last_name = request.args.get('last_name')
     lot_number = request.args.get('lot_number')
-    return check_in_database(first_name, last_name, lot_number)
+    return check_in_database(first_name.strip(), last_name.strip(), lot_number.strip())
 
