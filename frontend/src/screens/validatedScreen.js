@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import QRCode from 'qrcode.react'
-import { Grid, Paper, Card, CardContent, Container, Box, Typography }  from '@material-ui/core';
+import { Grid, Card, CardContent, Typography }  from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,9 +20,6 @@ const ValidatedScreen = (props) => {
   const { user_name, lot_number } = props.props;
   const qr_string = "" + user_name + " " + lot_number;
     
-  console.log("user name in val: ", user_name);
-  
-
   return (
     <Grid 
       container
@@ -36,6 +30,7 @@ const ValidatedScreen = (props) => {
       style={{ minHeight: '100vh' }}
     >
       <Grid item xs={10}>
+
         <Card className={classes.root} >
           <CardContent>
           <Typography variant="h4" >
@@ -45,19 +40,19 @@ const ValidatedScreen = (props) => {
         </Card>
         
         <Card className={classes.root}>
-        <CardContent>
-        <Typography variant="h5" >
-                {"Lot #: " + lot_number}
+          <CardContent>
+            <Typography variant="h5" >
+              {"Lot #: " + lot_number}
             </Typography>
-            </CardContent>
+          </CardContent>
         </Card>
+
         <Card className={classes.root}>
-        <CardContent>
-        <QRCode className={classes.media} value={qr_string} size={200} />
-        </CardContent>
+          <CardContent>
+            <QRCode className={classes.media} value={qr_string} size={200} />
+          </CardContent>
         </Card>
             
-        
       </Grid>
     </Grid>
   );

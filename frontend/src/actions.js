@@ -51,37 +51,39 @@ export const try_login = (email, user_name) => {
     }
 }
 
-export const try_validate = (first_name, last_name, lot_number) => {
+export const try_validate = (first_name, last_name, lot_number, dob) => {
     return async (dispatch, getState ) => {
         
-        // set_loading(true);
+        set_loading(true);
 
-        // let r_body = JSON.stringify({
-        //         "first_name": first_name,
-        //         "last_name": last_name,
-        //         "lot_number": lot_number
-        // })
-        // console.log(r_body);
+        let r_body = JSON.stringify({
+                "first_name": first_name,
+                "last_name": last_name,
+                "lot_number": lot_number,
+                "date_of_birth": dob
+        })
+        console.log(r_body);
 
-        // let response = await fetch(SERVER_URL+"validateLotNumber", {
-        //     method: 'post',
-        //     headers: { 'Content-Type': 'application/json'},
-        //     body: r_body
-        // })
-        // if (response.ok) {
-        //     let res = await response.text();
-        //     console.log("validated: ", res);
+        let response = await fetch(SERVER_URL+"validateLotNumber", {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json'},
+            body: r_body
+        })
+        if (response.ok) {
+            let res = await response.text();
+            console.log("validated: ", res);
             
-        //     dispatch(set_validation(res === "True" ? true : false));
-        //     dispatch(set_lot_number(lot_number));
-        //     dispatch(set_loading(false));
-        // }
-        // else {
-        //     dispatch(set_loading(true));
-        // }
+            dispatch(set_validation(res === "True" ? true : false));
+            dispatch(set_user_name(first_name+" "+last_name));
+            dispatch(set_lot_number(lot_number));
+            dispatch(set_loading(false));
+        }
+        else {
+            dispatch(set_loading(true));
+        }
         
         // dispatch(set_user_name(first_name+" "+last_name));
-         dispatch(set_validation(true));
+        // dispatch(set_validation(true));
         // dispatch(set_lot_number(lot_number));
         // dispatch(set_loading(false));
         
