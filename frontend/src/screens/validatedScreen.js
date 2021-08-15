@@ -11,7 +11,7 @@ const ValidatedScreen = (props) => {
   const qr_string = "" + user_name + " " + lot_number;
     
   console.log("user name in val: ", user_name);
-  const darkTheme = createTheme({ palette: { mode: 'dark' } });
+  const theme = createTheme({ palette: { mode: 'dark' } });
   
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,

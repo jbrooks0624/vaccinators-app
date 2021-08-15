@@ -14,9 +14,6 @@ function UnValidated(props) {
     
     const onClickEvent = () => {
         dispatch(try_validate(first,last,lot))
-        setFirst("");
-        setLast("");
-        setLot("");
     }
 
     var firstName;

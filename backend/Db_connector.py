@@ -1,7 +1,12 @@
 import sqlite3
 from flask import Flask
 from flask import request
+
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
+
 app.run()
 
 
@@ -33,5 +38,13 @@ def validate_lot_number():
     first_name = request.args.get('first_name')
     last_name = request.args.get('last_name')
     lot_number = request.args.get('lot_number')
-    return check_in_database(first_name.strip(), last_name.strip(), lot_number.strip())
+
+    print("request: ")
+    print(request.args["first_name"])
+    print("end request\n")
+    # print(first_name)
+    # print(last_name)
+    # print(lot_number)
+
+    return check_in_database(first_name, last_name, lot_number)
 
