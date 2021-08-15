@@ -36,6 +36,9 @@ const ValidatedScreen = (props) => {
           <Typography variant="h4" >
                 {user_name + " is fully vaccinated."}
             </Typography>
+            <Typography variant="h6" >
+                {"Businesses can scan the QR code to confirm!"}
+            </Typography>
           </CardContent>
         </Card>
         
