@@ -7,7 +7,7 @@ import { Grid, Paper, Card, CardContent, Container, Box, Typography }  from '@ma
 
 import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
 const ValidatedScreen = (props) => {
-  const { is_logged_in, user_name, is_validated, is_loading, lot_number } = props.props;
+  const { user_name, lot_number } = props.props;
   const qr_string = "" + user_name + " " + lot_number;
     
   console.log("user name in val: ", user_name);
@@ -19,7 +19,7 @@ const ValidatedScreen = (props) => {
     color: theme.palette.text.secondary,
     height: 'fit',
     lineHeight: '60px',
-    paddingTop: '30px',
+    padding: '30px',
     marginTop: '60px',
     verticalAlign: 'center'
   }));
