@@ -1,0 +1,22 @@
+.HeaderContainer {
+    display: flex;
+    /* position: fixed; */
+    width: 100%;
+    background-color: #085F63;
+    margin-left: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+}
+
+.LeftHeader {
+    flex: 66%;
+    text-align: center;
+    color: white;
+}
+
+.RightHeader{
+    flex: 33%;
+    text-align: right;
+    padding-right: 20px;
+}

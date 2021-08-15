@@ -4,6 +4,7 @@ import { try_validate } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@material-ui/core'
+import Header from './Header'
 
 function UnValidated(props) {
 
@@ -21,7 +22,9 @@ function UnValidated(props) {
     var lotNum;
     
     return (
-        <div>
+        
+        <div className="wrap">
+            <Header className="header" />
             <h3 className="header1">If you are fully vaccinated, enter the following information below </h3>
            
             <p className="header2">Enter your lot number to validate your vaccination status</p>
@@ -40,7 +43,7 @@ function UnValidated(props) {
                 <a href="https://www.vaccines.gov/">Vaccine information</a>
             </div>
             
-        </div>
+       </div>
         
     )
 }

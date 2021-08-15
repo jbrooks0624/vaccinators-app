@@ -14,7 +14,7 @@ function App() {
   const { is_logged_in, user_name, is_validated, is_loading } = user_state;
   console.log("logged in: ", is_logged_in);
   return (
-    <Container maxWidth="sm">
+    <Container >
       {is_loading ? 
         <div>loading</div> :
         !is_logged_in ? 
