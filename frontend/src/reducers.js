@@ -20,6 +20,8 @@ const reducerUser = (state = INITIAL_USER, action = {}) => {
             return { ...state, is_loading: action.payload }
         case 'set_user_name':
             return { ...state, user_name: action.payload }
+            case 'set_lot_number':
+            return { ...state, lot_number: action.payload }
 	 	default: return state;
 	}
 };
