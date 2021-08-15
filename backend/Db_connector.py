@@ -36,10 +36,10 @@ def check_in_database(first_name, last_name, lot_number):
 @app.route("/validateLotNumber", methods=['POST'])
 def validate_lot_number():
     
-    res = request.json
-    first_name = res["first_name"]
-    last_name = res["last_name"]
-    lot_number = res["lot_number"]
+    req = request.json
+    first_name = req["first_name"]
+    last_name = req["last_name"]
+    lot_number = req["lot_number"]
 
     return check_in_database(first_name, last_name, lot_number)
 
