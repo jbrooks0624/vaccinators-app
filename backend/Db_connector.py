@@ -13,7 +13,7 @@ app.run()
 def check_in_database(first_name, last_name, lot_number):
     try:
         conn = sqlite3.connect('VaccinatorsData.db')
-        print("Opened database successfully");
+        print("Opened database successfully")
 
     except Exception as e:
         print("Error during connection", str(e))
@@ -35,16 +35,11 @@ def check_in_database(first_name, last_name, lot_number):
 
 @app.route("/validateLotNumber", methods=['POST'])
 def validate_lot_number():
-    first_name = request.args.get('first_name')
-    last_name = request.args.get('last_name')
-    lot_number = request.args.get('lot_number')
-
-    print("request: ")
-    print(request.args["first_name"])
-    print("end request\n")
-    # print(first_name)
-    # print(last_name)
-    # print(lot_number)
+    
+    res = request.json
+    first_name = res["first_name"]
+    last_name = res["last_name"]
+    lot_number = res["lot_number"]
 
     return check_in_database(first_name, last_name, lot_number)
 

@@ -31,36 +31,6 @@ export const set_lot_number = (new_lot_number) => ({
 
 const SERVER_URL = "http://127.0.0.1:5000/";
 
-export const serverGET = async (type) => {
-    let response = await fetch(SERVER_URL, {
-        method: 'get',
-        headers: { "type" : type },
-    })
-    if (response.ok) {
-        response = response.json();
-        return response;
-    }
-    else console.log("GET ERROR");
-        return "ERR";
-}
-
-export const serverPOST = async (type) => {
-    console.log("running post");
-
-    let response = await fetch(SERVER_URL, {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            Type: type,
-        })
-    })
-    if (response.ok) {
-        return response;
-    }
-    else console.log("POST ERROR");
-        return "ERR";
-}
-
 export const try_login = (email, user_name) => {
     return async (dispatch, getState ) => {
         console.log("try login");
@@ -86,22 +56,25 @@ export const try_validate = (first_name, last_name, lot_number) => {
         console.log("try_validate()\nfirst:", first_name, "\nlast:", last_name, "\nlot_num:", lot_number);
         set_loading(true);
 
+        let r_body = JSON.stringify({
+                "first_name": first_name,
+                "last_name": last_name,
+                "lot_number": lot_number
+        })
+        console.log(r_body);
+
         let response = await fetch(SERVER_URL+"validateLotNumber", {
             method: 'post',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'first_name': first_name,
-                'last_name': last_name,
-                'lot_number': lot_number,
-            })
+            body: r_body
         })
         if (response.ok) {
             let res = await response.text();
             console.log("validated: ", res);
-            // dispatch(set_user_name(response.user_name));
-            // dispatch(set_validation(response.));
-            // dispatch(set_lot_number(lot_number));
-            // dispatch(set_loading(false));
+            
+            dispatch(set_validation(res === "True" ? true : false));
+            dispatch(set_lot_number(lot_number));
+            dispatch(set_loading(false));
         }
         else console.log("POST ERROR");
             return "ERR";

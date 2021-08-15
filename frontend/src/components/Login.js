@@ -17,8 +17,8 @@ function Login() {
       `Logged in successfully welcome ${res.profileObj.name} 😍. \n See console for full profile object.`
     );
     refreshTokenSetup(res);
-    const { email, familyName, givenName} = res.profileObj;
-    dispatch(try_login(email, familyName+" "+givenName));
+    const { email, name} = res.profileObj;
+    dispatch(try_login(email, name));
   };
 
   const onFailure = (res) => {
