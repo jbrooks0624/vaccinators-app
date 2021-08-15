@@ -1,5 +1,3 @@
-import { serverGET, serverPOST } from './serverAPI';
-
 
 // NON_THUNK
 
@@ -31,10 +29,46 @@ export const set_lot_number = (new_lot_number) => ({
 
 // THUNK
 
+const SERVER_URL = "http://127.0.0.1:5000/";
+
+export const serverGET = async (type) => {
+    let response = await fetch(SERVER_URL, {
+        method: 'get',
+        headers: { "type" : type },
+    })
+    if (response.ok) {
+        response = response.json();
+        return response;
+    }
+    else console.log("GET ERROR");
+        return "ERR";
+}
+
+export const serverPOST = async (type) => {
+    console.log("running post");
+
+    let response = await fetch(SERVER_URL, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            Type: type,
+        })
+    })
+    if (response.ok) {
+        return response;
+    }
+    else console.log("POST ERROR");
+        return "ERR";
+}
+
 export const try_login = (email, password) => {
     return async (dispatch, getState ) => {
         console.log("try login");
         set_loading(true);
+
+
+
+
         // const response = await serverGET("login", email, password);
         // if (response !== "ERR") {
         //     dispatch(set_user_name(response.user_name));
@@ -55,19 +89,29 @@ export const try_validate = (first_name, last_name, lot_number) => {
         console.log("try login, first_name: ", first_name);
         set_loading(true);
 
+        let response = await fetch(SERVER_URL+"validateLotNumber", {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+            body: JSON.stringify({
+                "first_name": first_name,
+                "last_name": last_name,
+                "lot_number": lot_number,
+            })
+        })
+
+        if (response.ok) {
+            console.log(response);
+            // dispatch(set_user_name(response.user_name));
+            // dispatch(set_validation(response.));
+            // dispatch(set_lot_number(lot_number));
+            // dispatch(set_loading(false));
+        }
+        else console.log("POST ERROR");
+            return "ERR";
+        
 
 
-        // const response = await serverGET("login", email, password);
-        // if (response !== "ERR") {
-        //     dispatch(set_user_name(response.user_name));
-        //     dispatch(set_validation(response.is_validated));
-        //     dispatch(set_login(true));
-        //     dispatch(set_loading(false));
-        // }
-        const response = { user_name: first_name + " " + last_name, is_validated: true }
-        dispatch(set_user_name(response.user_name));
-        dispatch(set_validation(response.is_validated));
-        dispatch(set_lot_number(lot_number));
-        dispatch(set_loading(false));
+        
+        
     }
 }

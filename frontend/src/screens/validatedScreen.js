@@ -28,7 +28,7 @@ const ValidatedScreen = (props) => {
         
         <Item>
             <Typography variant="h3" >
-                {user_name + "'s vaccine is validated!"}
+                {user_name + " is fully vaccinated."}
             </Typography>
         </Item>
         <Item>
@@ -39,7 +39,7 @@ const ValidatedScreen = (props) => {
         <Item>
             <QRCode value={qr_string} />
         </Item>
-        
+
     </Container>
   );
 }
